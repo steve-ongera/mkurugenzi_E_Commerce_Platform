@@ -21,11 +21,10 @@ class UserSerializer(serializers.ModelSerializer):
         model  = User
         fields = [
             'id', 'email', 'full_name', 'phone', 'avatar',
-            'is_verified', 'date_joined',
+            'is_verified', 'is_staff', 'date_joined',
             'default_county', 'default_town', 'default_station', 'default_address',
         ]
-        read_only_fields = ['id', 'email', 'is_verified', 'date_joined']
-
+        read_only_fields = ['id', 'email', 'is_verified', 'is_staff', 'date_joined']
 
 class RegisterSerializer(serializers.ModelSerializer):
     password  = serializers.CharField(write_only=True, validators=[validate_password])
