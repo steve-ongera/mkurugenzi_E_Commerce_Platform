@@ -1,3 +1,5 @@
+// App.jsx
+
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import { CartProvider } from './contexts/CartContext'

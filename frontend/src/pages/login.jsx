@@ -1,3 +1,4 @@
+// pages/login.jsx
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
@@ -16,8 +17,13 @@ export default function Login() {
     setError('')
     setLoading(true)
     try {
-      await login(form.email, form.password)
-      navigate('/')
+      const data = await login(form.email, form.password)
+      // Staff users → admin dashboard; regular users → storefront home
+      if (data?.user?.is_staff) {
+        navigate('/admin', { replace: true })
+      } else {
+        navigate('/', { replace: true })
+      }
     } catch (err) {
       setError(err.message || 'Invalid email or password.')
     } finally {
