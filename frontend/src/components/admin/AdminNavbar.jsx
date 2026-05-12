@@ -1,32 +1,38 @@
+// ─────────────────────────────────────────────────────────────────────────────
 // components/admin/AdminNavbar.jsx
+// ─────────────────────────────────────────────────────────────────────────────
 import { useAuth } from '../../contexts/AuthContext'
-
+ 
 export default function AdminNavbar({ collapsed, onToggle, pageTitle }) {
   const { user } = useAuth()
-
+ 
   const initials = user?.full_name
     ? user.full_name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase()
     : 'AD'
-
+ 
   return (
     <nav className={`adm-navbar ${collapsed ? 'sidebar-collapsed' : ''}`}>
+      {/* Sidebar toggle */}
       <button className="adm-navbar-toggle" onClick={onToggle} title="Toggle sidebar">
         <i className="ph ph-list" />
       </button>
-
+ 
+      {/* Breadcrumb */}
       <div className="adm-navbar-breadcrumb">
         <span>admin</span>
         <span>/</span>
         <strong>{pageTitle || 'dashboard'}</strong>
       </div>
-
+ 
       <div className="adm-navbar-spacer" />
-
+ 
+      {/* Search */}
       <div className="adm-navbar-search">
         <i className="ph ph-magnifying-glass" />
         <input placeholder="Quick search…" />
       </div>
-
+ 
+      {/* Actions */}
       <div className="adm-navbar-actions">
         <button className="adm-navbar-icon-btn" title="Notifications">
           <i className="ph ph-bell" />
