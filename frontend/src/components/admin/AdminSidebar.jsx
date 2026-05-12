@@ -1,7 +1,7 @@
 // components/admin/AdminSidebar.jsx
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
-
+ 
 const NAV = [
   {
     section: 'Overview',
@@ -33,33 +33,31 @@ const NAV = [
     ],
   },
 ]
-
+ 
 export default function AdminSidebar({ collapsed }) {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
-
+ 
   const initials = user?.full_name
     ? user.full_name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase()
     : 'AD'
-
+ 
   const handleLogout = async () => {
     await logout()
     navigate('/login')
   }
-
+ 
   return (
     <aside className={`adm-sidebar ${collapsed ? 'collapsed' : ''}`}>
       {/* Logo */}
       <div className="adm-sidebar-logo">
         <div className="adm-sidebar-logo-mark">M</div>
-        {!collapsed && (
-          <div className="adm-sidebar-logo-text">
-            Mkuru<span>genzi</span>
-            <span className="adm-sidebar-logo-sub">Admin Panel</span>
-          </div>
-        )}
+        <div className="adm-sidebar-logo-text">
+          Mkuru<span>genzi</span>
+          <span className="adm-sidebar-logo-sub">Admin Panel</span>
+        </div>
       </div>
-
+ 
       {/* Nav */}
       <nav className="adm-sidebar-nav">
         {NAV.map(group => (
@@ -84,12 +82,11 @@ export default function AdminSidebar({ collapsed }) {
             ))}
           </div>
         ))}
-
+ 
         {/* Logout */}
-        <div style={{ marginTop: 'auto', paddingTop: 12 }}>
+        <div style={{ marginTop: 'auto', paddingTop: 16 }}>
           <button
             className="adm-nav-item"
-            style={{ width: '100%', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--adm-text-muted)' }}
             onClick={handleLogout}
             title={collapsed ? 'Logout' : undefined}
           >
@@ -98,7 +95,7 @@ export default function AdminSidebar({ collapsed }) {
           </button>
         </div>
       </nav>
-
+ 
       {/* Footer user */}
       <div className="adm-sidebar-footer">
         <div className="adm-sidebar-user">
